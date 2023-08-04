@@ -15,20 +15,21 @@ share_spend_db
   | id       | Integer | PK       |
   | name     | String  | NOT NULL |
   | password | String  | NOT NULL |
-- types
+- types(timestamps)
   | カラム名 | 型      | 備考 |
   | -------- | ------- | ---- |
   | id       | Integer | PK   |
   | type     | String  | FK   |
-- costs
+- costs(timestamps)
   | カラム名 | 型      | 備考             |
   | -------- | ------- | ---------------- |
   | id       | Integer | PK               |
   | user_id  | Integer | FK(app_users.id) |
+  | type_id  | Integer | FK(types.id)     |
   | name     | String  | NOT NULL         |
   | cost     | Integer | NOT NULL         |
   | is_split | Boolean | True:請求対象    |
-- fixed_costs
+- fixed_costs(timestamps)
   | カラム名 | 型      | 備考         |
   | -------- | ------- | ------------ |
   | id       | Integer | PK           |
