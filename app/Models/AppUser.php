@@ -9,8 +9,15 @@ class AppUser extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'password'
     ];
+
+    public static function createUser($data)
+    {
+        return self::create($data);
+    }
 }
