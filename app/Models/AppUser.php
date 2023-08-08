@@ -18,6 +18,15 @@ class AppUser extends Model
 
     public static function createUser($data)
     {
-        return self::create($data);
+        $user = self::create($data->all());
+        return self::select('id', 'name')->find($user->id);
+    }
+
+    public static function login($data)
+    {
+        return self::where('name', $data->name)
+            ->where('password', $data->password)
+            ->select('id', 'name')
+            ->first();
     }
 }
