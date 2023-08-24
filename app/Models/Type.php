@@ -12,4 +12,10 @@ class Type extends Model
     protected $fillable = [
         'type'
     ];
+
+    public static function getAll()
+    {
+        $types = self::all();
+        return $types;
+    }
 }
