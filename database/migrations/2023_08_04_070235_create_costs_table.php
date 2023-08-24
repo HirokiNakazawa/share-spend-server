@@ -18,7 +18,8 @@ return new class extends Migration {
             $table->foreign('type_id')->references('id')->on('types')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('name');
             $table->integer('cost');
-            $table->boolean('is_split');
+            $table->boolean('is_half_billing');
+            $table->boolean('is_full_billing');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ class Cost extends Model
         'type_id',
         'name',
         'cost',
-        'is_split'
+        'is_half_billing',
+        'is_full_billing'
     ];
 }
