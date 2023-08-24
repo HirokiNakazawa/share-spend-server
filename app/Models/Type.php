@@ -18,4 +18,10 @@ class Type extends Model
         $types = self::all();
         return $types;
     }
+
+    public static function createType($data)
+    {
+        $type = self::create($data->all());
+        return self::select("type")->find($type->id);
+    }
 }

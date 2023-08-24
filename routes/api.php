@@ -25,3 +25,4 @@ Route::post('/register', [AppUserController::class, 'register']);
 Route::post('/login', [AppUserController::class, 'login']);
 
 Route::get('/types', [TypeController::class, 'index']);
+Route::post('/types/create', [TypeController::class, 'store']);
