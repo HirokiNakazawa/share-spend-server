@@ -17,4 +17,16 @@ class Cost extends Model
         'is_half_billing',
         'is_full_billing'
     ];
+
+    public static function getAll()
+    {
+        $costs = self::all();
+        return $costs;
+    }
+
+    public static function createCost($data)
+    {
+        $cost = self::create($data->all());
+        return self::select("name", "cost")->find($cost->id);
+    }
 }

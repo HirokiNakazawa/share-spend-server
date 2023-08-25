@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AppUserController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\CostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::post('/login', [AppUserController::class, 'login']);
 
 Route::get('/types', [TypeController::class, 'index']);
 Route::post('/types/create', [TypeController::class, 'store']);
+
+Route::get('/costs', [CostController::class, 'index']);
+Route::post('/costs/create', [CostController::class, 'store']);
