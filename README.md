@@ -48,8 +48,9 @@ share_spend_db
 | /types/create                     | POST     | 費用種別登録             |
 | /types/updete/{typeId}            | PUT      | 費用種別更新             |
 | /types/delete/{typeId}            | DELETE   | 費用種別削除             |
-| /costs/all                        | GET      | 全支出取得               |
-| /costs?year={}&month={}           | GET      | 月別支出取得             |
+| /costs                            | GET      | 全支出取得               |
+| /costs/all?year={}&month={}       | GET      | 月別支出一覧取得         |
+| /costs/type?year={}&month={}      | GET      | 種別毎の月別支出一覧取得 |
 | /costs/create                     | POST     | 支出登録                 |
 | /costs/updete/{costId}            | PUT      | 支出更新                 |
 | /costs/delete/{costId}            | DELETE   | 支出削除                 |

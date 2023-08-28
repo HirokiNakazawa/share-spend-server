@@ -17,6 +17,18 @@ class CostController extends Controller
         );
     }
 
+    public function showMonthlyCostByType(Request $request)
+    {
+        $year = $request->query('year');
+        $month = $request->query('month');
+
+        $costs = Cost::getMonthlyCostyType($year, $month);
+        return response()->json(
+            $costs,
+            200
+        );
+    }
+
     public function store(Request $request)
     {
         $cost = Cost::createCost($request);
