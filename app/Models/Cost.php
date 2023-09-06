@@ -32,13 +32,16 @@ class Cost extends Model
         return $costs;
     }
 
-    public static function getMonthlyCostyType($year, $month)
+    public static function getMonthlyCostByType($year, $month)
     {
-        $costs = self::selectRaw("type_id, SUM(cost) as total_cost")
-            ->whereYear("created_at", $year)
-            ->whereMonth("created_at", $month)
-            ->groupBy("type_id")
+        $costs = self::join("types", "costs.type_id", "=", "types.id")
+            ->whereYear("costs.created_at", $year)
+            ->whereMonth("costs.created_at", $month)
+            ->selectRaw("costs.type_id, types.type as type_name, CAST(SUM(costs.cost) AS SIGNED) as total_cost")
+            ->groupBy("costs.type_id")
+            ->orderBy("total_cost", "desc")
             ->get();
+
         return $costs;
     }
 

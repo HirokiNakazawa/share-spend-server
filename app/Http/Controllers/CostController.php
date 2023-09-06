@@ -34,7 +34,7 @@ class CostController extends Controller
         $year = $request->query('year');
         $month = $request->query('month');
 
-        $costs = Cost::getMonthlyCostyType($year, $month);
+        $costs = Cost::getMonthlyCostByType($year, $month);
         return response()->json(
             $costs,
             200

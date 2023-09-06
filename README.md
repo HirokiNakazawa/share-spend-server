@@ -43,12 +43,12 @@ share_spend_db
 | --------------------------------- | -------- | ------------------------ |
 | /register                         | POST     | ユーザー登録             |
 | /login                            | POST     | ログイン                 |
-| /users/{userId}                   | GET      | ユーザー別の支出一覧取得 |
 | /types                            | GET      | 全費用種別取得           |
 | /types/create                     | POST     | 費用種別登録             |
 | /types/updete/{typeId}            | PUT      | 費用種別更新             |
 | /types/delete/{typeId}            | DELETE   | 費用種別削除             |
 | /costs                            | GET      | 全支出取得               |
+| /costs/{userId}                   | GET      | ユーザー別の支出一覧取得 |
 | /costs/all?year={}&month={}       | GET      | 月別支出一覧取得         |
 | /costs/type?year={}&month={}      | GET      | 種別毎の月別支出一覧取得 |
 | /costs/create                     | POST     | 支出登録                 |
