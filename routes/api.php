@@ -29,6 +29,7 @@ Route::get('/types', [TypeController::class, 'index']);
 Route::post('/types/create', [TypeController::class, 'store']);
 
 Route::get('/costs', [CostController::class, 'index']);
+Route::get('/costs/{userId}', [CostController::class, 'show']);
 Route::get('/costs/all', [CostController::class, 'showMonthlyCost']);
 Route::get('/costs/type', [CostController::class, 'showMonthlyCostByType']);
 Route::post('/costs/create', [CostController::class, 'store']);

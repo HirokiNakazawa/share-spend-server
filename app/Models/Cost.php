@@ -24,6 +24,15 @@ class Cost extends Model
         return $costs;
     }
 
+    public static function getAllByUser($year, $month, $userId)
+    {
+        $costs = self::whereYear("created_at", $year)
+            ->whereMonth("created_at", $month)
+            ->where("user_id", $userId)
+            ->get();
+        return $costs;
+    }
+
     public static function getMonthlyCost($year, $month)
     {
         $costs = self::whereYear("created_at", $year)

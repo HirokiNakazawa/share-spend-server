@@ -17,6 +17,18 @@ class CostController extends Controller
         );
     }
 
+    public function show(Request $request, $userId)
+    {
+        $year = $request->query('year');
+        $month = $request->query('month');
+
+        $costs = Cost::getAllByUser($year, $month, $userId);
+        return response()->json(
+            $costs,
+            200
+        );
+    }
+
     public function showMonthlyCost(Request $request)
     {
         $year = $request->query('year');
