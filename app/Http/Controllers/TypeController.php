@@ -10,7 +10,15 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $types = Type::getAll();
+        $typeList = Type::getAll();
+
+        $types = array();
+        foreach ($typeList as $type) {
+            if (!isset($types[$type["id"]])) {
+                $types[$type["id"]] = $type["type"];
+            }
+        }
+
         return response()->json(
             $types,
             200
