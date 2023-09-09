@@ -59,4 +59,11 @@ class Cost extends Model
         $cost = self::create($data->all());
         return self::select("name", "cost")->find($cost->id);
     }
+
+    public static function updateCost($data, $id)
+    {
+        $cost = self::findOrFail($id);
+        $cost->update($data->all());
+        return $cost;
+    }
 }

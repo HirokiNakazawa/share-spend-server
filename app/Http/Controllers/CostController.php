@@ -61,4 +61,13 @@ class CostController extends Controller
             200
         );
     }
+
+    public function update(Request $reauest, $id)
+    {
+        $cost = Cost::updateCost($reauest, $id);
+        return response()->json(
+            $cost,
+            200
+        );
+    }
 }
