@@ -70,4 +70,27 @@ class CostController extends Controller
             200
         );
     }
+
+    public function getMonthlyBillingAmount(Request $request)
+    {
+        $year = $request->query('year');
+        $month = $request->query('month');
+
+        $summaryCosts = Cost::getMonthlyBillingAmount($year, $month);
+
+        $costs = array();
+        foreach ($summaryCosts as $cost) {
+            $id = $cost->user_id;
+            if (!isset($costs[$id])) {
+                $costs[$id] = array();
+                $costs[$id]["half_billing"] = $cost->my_half_billing;
+                $costs[$id]["full_billing"] = $cost->my_full_billing;
+            }
+        }
+
+        return response()->json(
+            $costs,
+            200
+        );
+    }
 }

@@ -34,3 +34,5 @@ Route::get('/costs/type', [CostController::class, 'showMonthlyCostByType']);
 Route::get('/costs/{userId}', [CostController::class, 'show']);
 Route::post('/costs/create', [CostController::class, 'store']);
 Route::put('/costs/update/{id}', [CostController::class, 'update']);
+
+Route::get('/billing-amount', [CostController::class, 'getMonthlyBillingAmount']);

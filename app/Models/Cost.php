@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Cost extends Model
 {
@@ -65,5 +66,22 @@ class Cost extends Model
         $cost = self::findOrFail($id);
         $cost->update($data->all());
         return $cost;
+    }
+
+    public static function getMonthlyBillingAmount($year, $month)
+    {
+        $summaryCosts = DB::table('costs')
+            ->select(
+                'user_id',
+                DB::raw('SUM(CASE WHEN is_half_billing = 1 THEN cost / 2 ELSE 0 END) AS my_half_billing'),
+                DB::raw('SUM(CASE WHEN is_full_billing = 1 THEN cost ELSE 0 END) AS my_full_billing')
+            )
+            ->whereIn('user_id', [1, 2])
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->groupBy('user_id')
+            ->get();
+
+        return $summaryCosts;
     }
 }
