@@ -83,8 +83,8 @@ class CostController extends Controller
             $id = $cost->user_id;
             if (!isset($costs[$id])) {
                 $costs[$id] = array();
-                $costs[$id]["half_billing"] = $cost->my_half_billing;
-                $costs[$id]["full_billing"] = $cost->my_full_billing;
+                $costs[$id]["name"] = $cost->name;
+                $costs[$id]["claim"] = $cost->my_half_billing + $cost->my_full_billing;
             }
         }
 
