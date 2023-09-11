@@ -73,15 +73,15 @@ class Cost extends Model
         $summaryCosts = DB::table('app_users')
             ->join(DB::raw('(SELECT
             user_id,
-            SUM(CASE WHEN is_half_billing = 1 THEN cost / 2 ELSE 0 END) AS my_half_billing,
-            SUM(CASE WHEN is_full_billing = 1 THEN cost ELSE 0 END) AS my_full_billing
+            SUM(CASE WHEN is_half_billing = 1 THEN cost / 2 ELSE 0 END) + SUM(CASE WHEN is_full_billing = 1 THEN cost ELSE 0 END) AS total_billing
         FROM costs
         WHERE user_id IN (1, 2)
         AND YEAR(created_at) = ?
         AND MONTH(created_at) = ?
         GROUP BY user_id) AS summary'), 'app_users.id', '=', 'summary.user_id')
-            ->select('summary.user_id', 'app_users.name', 'my_half_billing', 'my_full_billing')
+            ->select('summary.user_id', 'app_users.name', 'total_billing')
             ->setBindings([$year, $month])
+            ->orderBy("total_billing", "desc")
             ->get();
 
         return $summaryCosts;

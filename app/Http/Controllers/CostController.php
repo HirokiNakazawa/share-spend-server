@@ -78,18 +78,15 @@ class CostController extends Controller
 
         $summaryCosts = Cost::getMonthlyBillingAmount($year, $month);
 
-        $costs = array();
-        foreach ($summaryCosts as $cost) {
-            $id = $cost->user_id;
-            if (!isset($costs[$id])) {
-                $costs[$id] = array();
-                $costs[$id]["name"] = $cost->name;
-                $costs[$id]["claim"] = $cost->my_half_billing + $cost->my_full_billing;
-            }
-        }
+        $claim = $summaryCosts[0]->total_billing - $summaryCosts[1]->total_billing;
+        $response = array(
+            "sender" => $summaryCosts[1]->name,
+            "receiver" => $summaryCosts[0]->name,
+            "claim" => $claim
+        );
 
         return response()->json(
-            $costs,
+            $response,
             200
         );
     }
