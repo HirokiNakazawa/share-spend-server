@@ -78,15 +78,23 @@ class CostController extends Controller
 
         $summaryCosts = Cost::getMonthlyBillingAmount($year, $month);
 
-        if (count($summaryCosts) > 1) {
+        if (count($summaryCosts) == 2) {
             $claim = $summaryCosts[0]->total_billing - $summaryCosts[1]->total_billing;
             $response = array(
                 "sender" => $summaryCosts[1]->name,
                 "receiver" => $summaryCosts[0]->name,
                 "claim" => $claim
             );
+        } elseif (count($summaryCosts) == 0) {
+            return response()->json(
+                array("message" => "データが登録されていません"),
+                200
+            );
         } elseif (count($summaryCosts) >= 2) {
-            $response = "ユーザーが3名以上存在しています";
+            return response()->json(
+                "ユーザーが3名以上存在しています",
+                500
+            );
         } else {
             $claim = $summaryCosts[0]->total_billing - 0;
             $response = array(
