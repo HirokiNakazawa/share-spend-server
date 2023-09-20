@@ -13,4 +13,10 @@ class FixedCost extends Model
         'cost_id',
         'end_date'
     ];
+
+    public static function getAll()
+    {
+        $fixedCosts = self::all();
+        return $fixedCosts;
+    }
 }

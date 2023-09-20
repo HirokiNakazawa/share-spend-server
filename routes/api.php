@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppUserController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CostController;
+use App\Http\Controllers\FixedCostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,7 @@ Route::get('/costs/type', [CostController::class, 'showMonthlyCostByType']);
 Route::get('/costs/{userId}', [CostController::class, 'show']);
 Route::post('/costs/create', [CostController::class, 'store']);
 Route::put('/costs/update/{id}', [CostController::class, 'update']);
+
+Route::get('/fixed-costs', [FixedCostController::class, 'index']);
 
 Route::get('/billing-amount', [CostController::class, 'getMonthlyBillingAmount']);

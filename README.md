@@ -54,6 +54,7 @@ share_spend_db
 | /costs/create                     | POST     | 支出登録                 |
 | /costs/updete/{costId}            | PUT      | 支出更新                 |
 | /costs/delete/{costId}            | DELETE   | 支出削除                 |
+| /fixed-costs                      | GET      | 全固定費取得             |
 | /fixed-costs/create               | POST     | 固定費用登録             |
 | /fixed-costs/update/{fixedCostId} | PUT      | 固定費用更新             |
 | /fixed-costs/delete/{fixedCostId} | DELETE   | 固定費用削除             |
