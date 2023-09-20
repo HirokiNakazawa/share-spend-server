@@ -16,4 +16,13 @@ class FixedCostController extends Controller
             200
         );
     }
+
+    public function store(Request $request)
+    {
+        $fixedCost = FixedCost::createFixedCost($request);
+        return response()->json(
+            $fixedCost,
+            200
+        );
+    }
 }
