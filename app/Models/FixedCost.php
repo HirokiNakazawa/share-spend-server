@@ -22,6 +22,24 @@ class FixedCost extends Model
         return $fixedCosts;
     }
 
+    public static function getAllByUser($userId)
+    {
+        $fixedCosts = self::join("costs", "fixed_costs.cost_id", "=", "costs.id")
+            ->where("costs.user_id", $userId)
+            ->select(
+                "fixed_costs.id",
+                "end_date",
+                "costs.user_id",
+                "costs.type_id",
+                "costs.name",
+                "costs.cost",
+                "costs.is_half_billing",
+                "costs.is_full_billing"
+            )
+            ->get();
+        return $fixedCosts;
+    }
+
     public static function createFixedCost($data)
     {
         $createCostData = $data->except("end_date");

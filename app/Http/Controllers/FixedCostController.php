@@ -17,6 +17,15 @@ class FixedCostController extends Controller
         );
     }
 
+    public function show($userId)
+    {
+        $fixedCosts = FixedCost::getAllByUser($userId);
+        return response()->json(
+            $fixedCosts,
+            200
+        );
+    }
+
     public function store(Request $request)
     {
         $fixedCost = FixedCost::createFixedCost($request);
