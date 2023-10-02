@@ -64,7 +64,7 @@ class Cost extends Model
     public static function updateCost($data, $id)
     {
         $cost = self::findOrFail($id);
-        $cost->update($data->all());
+        $cost->update($data);
         return $cost;
     }
 

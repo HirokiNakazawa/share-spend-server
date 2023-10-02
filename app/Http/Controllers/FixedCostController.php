@@ -34,4 +34,13 @@ class FixedCostController extends Controller
             200
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $fixedCost = FixedCost::updateFixedCost($request, $id);
+        return response()->json(
+            $fixedCost,
+            200
+        );
+    }
 }

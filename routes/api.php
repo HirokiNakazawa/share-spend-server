@@ -39,5 +39,6 @@ Route::put('/costs/update/{id}', [CostController::class, 'update']);
 Route::get('/fixed-costs', [FixedCostController::class, 'index']);
 Route::get('/fixed-costs/{userId}', [FixedCostController::class, 'show']);
 Route::post('/fixed-costs/create', [FixedCostController::class, 'store']);
+Route::put('/fixed-costs/update/{costId}', [FixedCostController::class, 'update']);
 
 Route::get('/billing-amount', [CostController::class, 'getMonthlyBillingAmount']);

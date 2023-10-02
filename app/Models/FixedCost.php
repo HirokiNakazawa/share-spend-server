@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,15 +43,38 @@ class FixedCost extends Model
 
     public static function createFixedCost($data)
     {
-        $createCostData = $data->except("end_date");
-        $cost = Cost::create($createCostData);
+        try {
+            $createCostData = $data->except("end_date");
+            $cost = Cost::create($createCostData);
 
-        $id = $cost->id;
-        $fixedCostData = array(
-            "cost_id" => $id,
+            $id = $cost->id;
+            $fixedCostData = array(
+                "cost_id" => $id,
+                "end_date" => $data->end_date
+            );
+            self::create($fixedCostData);
+
+            return array(
+                "name" => $data->name,
+                "cost" => $data->cost,
+                "end_date" => $data->end_date
+            );
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    public static function updateFixedCost($data, $id)
+    {
+        $updateCostData = $data->except("end_date");
+        Cost::updateCost($updateCostData, $id);
+
+        $fixedCost = self::where('cost_id', $id)->first();
+        $fixedCost->update(['end_date' => $data->end_date]);
+
+        return array(
+            "id" => $fixedCost->id,
             "end_date" => $data->end_date
         );
-        $fixedCost = self::create($fixedCostData);
-        return $fixedCost;
     }
 }
