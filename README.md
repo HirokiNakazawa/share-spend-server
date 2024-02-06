@@ -21,15 +21,16 @@ share_spend_db
   | id       | Integer | PK   |
   | type     | String  | FK   |
 - costs(timestamps)
-  | カラム名        | 型      | 備考              |
-  | --------------- | ------- | ----------------- |
-  | id              | Integer | PK                |
-  | user_id         | Integer | FK(app_users.id)  |
-  | type_id         | Integer | FK(types.id)      |
-  | name            | String  | NOT NULL          |
-  | cost            | Integer | NOT NULL          |
-  | is_half_billing | Boolean | True:半額請求対象 |
-  | is_full_billing | Boolean | True:全額請求対象 |
+  | カラム名          | 型      | 備考              |
+  | ----------------- | ------- | ----------------- |
+  | id                | Integer | PK                |
+  | user_id           | Integer | FK(app_users.id)  |
+  | type_id           | Integer | FK(types.id)      |
+  | name              | String  | NOT NULL          |
+  | cost              | Integer | NOT NULL          |
+  | is_half_billing   | Boolean | True:半額請求対象 |
+  | is_full_billing   | Boolean | True:全額請求対象 |
+  | registartion_date | Date    | NOT NULL          |
 - fixed_costs(timestamps)
   | カラム名 | 型      | 備考         |
   | -------- | ------- | ------------ |

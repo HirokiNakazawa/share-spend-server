@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->integer('cost');
             $table->boolean('is_half_billing');
             $table->boolean('is_full_billing');
+            $table->date('registration_date');
             $table->timestamps();
         });
     }

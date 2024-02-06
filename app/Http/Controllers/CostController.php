@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 
 use App\Models\Cost;
@@ -55,6 +56,11 @@ class CostController extends Controller
 
     public function store(Request $request)
     {
+        if (!isset($request["registration_date"])) {
+            $date = new DateTime();
+            $registration_date = $date->format("Y-m-d");
+            $request->merge(["registration_date" => $registration_date]);
+        }
         $cost = Cost::createCost($request);
         return response()->json(
             $cost,

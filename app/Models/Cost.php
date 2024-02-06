@@ -16,7 +16,8 @@ class Cost extends Model
         'name',
         'cost',
         'is_half_billing',
-        'is_full_billing'
+        'is_full_billing',
+        'registration_date'
     ];
 
     public static function getAll()
